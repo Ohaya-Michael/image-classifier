@@ -327,7 +327,7 @@ export default function App() {
     fd.append("file", imageFile);
 
     try {
-      const { data } = await axios.post(`${API}/classify`, fd);
+      const { data } = await axios.post(`${API}/classify_v1`, fd);
       setPredictions(data);
       setTimeout(() => setAnimate(true), 50);
     } catch (err) {
