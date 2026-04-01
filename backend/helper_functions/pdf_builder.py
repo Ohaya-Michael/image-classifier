@@ -101,9 +101,11 @@ def _build_pdf(img: Image.Image, preds: list[dict], filename: str) -> io.BytesIO
 
     rows = [["#", "Class Label", "Confidence", "Confidence Bar"]]
     for p in preds:
-        conf_numeric = p["confidence"]
-        bar = "█" * int(conf_numeric / 100 * 20) + "░" * (20 - int(conf_numeric / 100 * 20))
-        rows.append([str(p["rank"]), p["label"], f"{conf_numeric:.2f}%", bar])
+        # Parse confidence value (remove '%' if present and convert to float)
+        conf_str = p["confidence"].replace("%", "")
+        conf_val = float(conf_str) 
+        bar = "█" * int(conf_val / 100 * 20) + "░" * (20 - int(conf_val / 100 * 20))
+        rows.append([str(p["rank"]), p["label"], conf_str if isinstance(conf_str, str) and "%" in conf_str else f"{conf_val:.2f}%", bar])
 
     pred_tbl = Table(rows, colWidths=[0.45*inch, 2.8*inch, 1.1*inch, 2.65*inch])
     tbl_style = [
