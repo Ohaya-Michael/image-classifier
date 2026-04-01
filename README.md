@@ -1,6 +1,6 @@
 # 🔬 ImageClassifier App
 
-AI-powered image classification using **ResNet-50** pretrained on **ImageNet** (1000 classes).
+AI-powered image classification using **Finetune Model** pretrained on **ImageNet** (1000 classes).
 Built with **FastAPI** (backend) + **React.js** (frontend).
 Framework: **Keras / TensorFlow**
 
@@ -14,7 +14,7 @@ Framework: **Keras / TensorFlow**
 - 🍌 **Demo mode** — try with a banana image in one click
 - 📄 **PDF Report** download — styled report with image thumbnail + predictions table
 - 🔗 **Share** button — Web Share API with clipboard fallback
-- ⚡ **Fast inference** — < 1 second with ResNet-50 via Keras
+- ⚡ **Fast inference** — < 1 second with Finetune Model via Keras
 
 ---
 
@@ -64,7 +64,7 @@ uvicorn main:app --reload --port 8000
 API → **http://localhost:8000**
 Interactive docs → **http://localhost:8000/docs**
 
-> **Note:** On first run, Keras downloads the ResNet-50 ImageNet weights (~100 MB) automatically.
+> **Note:** On first run, Keras downloads the Finetune Model ImageNet weights (~100 MB) automatically.
 
 ---
 
@@ -94,7 +94,7 @@ Opens at **http://localhost:3000** and proxies API calls to `localhost:8000`.
 {
   "filename": "banana.jpg",
   "framework": "TensorFlow / Keras",
-  "model": "ResNet-50",
+  "model": "Finetune Model",
   "timestamp": "2024-12-01T14:32:10.123456",
   "predictions": [
     { "rank": 1, "label": "Banana",      "confidence": 97.43, "class_id": "n07753592" },
@@ -112,7 +112,7 @@ Opens at **http://localhost:3000** and proxies API calls to `localhost:8000`.
 
 | Layer     | Technology                       |
 |-----------|----------------------------------|
-| Model     | ResNet-50 (`tf.keras.applications`) |
+| Model     | Finetune Model (`tf.keras.applications`) |
 | Backend   | FastAPI + Uvicorn                |
 | PDF Gen   | ReportLab                        |
 | Frontend  | React 18 + Axios                 |
