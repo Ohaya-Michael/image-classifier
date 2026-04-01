@@ -43,7 +43,7 @@ function Header({ onShare, onDownload, hasPredictions, shareLabel }) {
           </div>
           <div className="brand-text">
             <span className="brand-name">ImageClassifier</span>
-            <span className="brand-tag">ResNet-50 · Keras / TensorFlow</span>
+            <span className="brand-tag">Finetuned Model · Keras / TensorFlow</span>
           </div>
         </div>
 
@@ -198,7 +198,7 @@ function ResultsPanel({ predictions, loading, animate, onDownload, onShare, shar
         <div className="state-center">
           <div className="pulse-ring"><div className="spinner-large" /></div>
           <p className="state-title">Analyzing image…</p>
-          <p className="state-sub">ResNet-50 (Keras) is running inference</p>
+          <p className="state-sub">Finetuned Model (Keras) is running inference</p>
         </div>
       </div>
     );
@@ -227,7 +227,7 @@ function ResultsPanel({ predictions, loading, animate, onDownload, onShare, shar
         <div>
           <h2 className="results-title">Top 5 Predictions</h2>
           <p className="results-sub">
-            Model: <span className="chip">ResNet-50</span>
+            Model: <span className="chip">Finetuned Model</span>
             &nbsp;Framework: <span className="chip">Keras / TF</span>
             &nbsp;· <span className="chip">{formatTime(predictions.timestamp)}</span>
           </p>
@@ -366,10 +366,10 @@ export default function App() {
   };
 
   const share = async () => {
-    let text = "Check out this Image Classifier App powered by ResNet-50 (Keras/TensorFlow)!";
+    let text = "Check out this Image Classifier App powered by Finetuned Model (Keras/TensorFlow)!";
     if (predictions?.predictions?.length) {
       const top = predictions.predictions[0];
-      text = `🔬 Image Classifier: "${top.label}" — ${top.confidence}% confidence\n(ResNet-50 / Keras / ImageNet)`;
+      text = `🔬 Image Classifier: "${top.label}" — ${top.confidence}% confidence\n(Finetuned Model / Keras / ImageNet)`;
     }
     if (navigator.share) {
       try { await navigator.share({ title: "ImageClassifier", text }); return; } catch {}
@@ -400,7 +400,7 @@ export default function App() {
         <section className="hero">
           <div className="hero-badge">
             <span className="dot" />
-            Keras · TensorFlow · ResNet-50 · ImageNet
+            Keras · TensorFlow · Finetuned Model · ImageNet
           </div>
           <h1 className="hero-title">
             Classify Any Image
@@ -496,7 +496,7 @@ export default function App() {
         {/* Stats */}
         <div className="stats-row">
           {[
-            { icon: "🧠", label: "Model",     value: "ResNet-50"     },
+            { icon: "🧠", label: "Model",     value: "Finetuned Model"     },
             { icon: "⚙️",  label: "Framework", value: "Keras / TF"    },
             { icon: "📦", label: "Classes",   value: "1,000"         },
             { icon: "⚡", label: "Inference", value: "< 1s"          },
@@ -516,7 +516,7 @@ export default function App() {
         <p>
           Built with <span className="accent">FastAPI</span> &amp;{" "}
           <span className="accent">React</span> · Powered by{" "}
-          <span className="accent">ResNet-50 (Keras / TensorFlow)</span>
+          <span className="accent">Finetuned Model (Keras / TensorFlow)</span>
         </p>
       </footer>
     </div>
