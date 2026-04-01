@@ -1,5 +1,7 @@
 # 🔬 ImageClassifier App
 
+![Image Classifier Screenshot](frontend/public/Screenshot%202026-04-01%20185129.png)
+
 AI-powered image classification using **Finetune Model** pretrained on **ImageNet** (1000 classes).
 Built with **FastAPI** (backend) + **React.js** (frontend).
 Framework: **Keras / TensorFlow**

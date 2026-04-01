@@ -72,7 +72,7 @@ function Header({ onShare, onDownload, hasPredictions, shareLabel }) {
     </header>
   );
 }
-
+ 
 // ─── Upload Zone ──────────────────────────────────────────────────────────────
 function UploadZone({ onFile, isDragging, setIsDragging, image, loading }) {
   const inputRef = useRef(null);
@@ -138,6 +138,7 @@ function UploadZone({ onFile, isDragging, setIsDragging, image, loading }) {
             </svg>
           </div>
           <p className="drop-title">Drop your image here</p>
+          <p className="drop-sub">Any of: Sunflower, Rose, Tulip, Daisy, Daffodil</p>
           <p className="drop-sub">PNG, JPG, WEBP, GIF supported</p>
           <div className="drop-divider"><span>or</span></div>
           <button
@@ -152,10 +153,19 @@ function UploadZone({ onFile, isDragging, setIsDragging, image, loading }) {
   );
 }
 
+
 // ─── Prediction Bar ───────────────────────────────────────────────────────────
 function PredictionBar({ pred, index, animate }) {
-  const color = getConfidenceColor(pred.confidence);
-  const label = getConfidenceLabel(pred.confidence);
+  // Parse confidence value (remove '%' if present and convert to number)
+  const pred_str = pred.confidence.replace("%", "");
+  // console.log(typeof pred_str === 'string');
+
+  const confValue = typeof pred_str === 'string' 
+    ? parseFloat(pred_str) 
+    : pred.confidence;
+  
+  const color = getConfidenceColor(confValue);
+  const label = getConfidenceLabel(confValue);
 
   return (
     <div
@@ -172,14 +182,14 @@ function PredictionBar({ pred, index, animate }) {
             <span className="pred-badge" style={{ background: color + "22", color }}>
               {label}
             </span>
-            <span className="pred-conf" style={{ color }}>{pred.confidence}%</span>
+            <span className="pred-conf" style={{ color }}>{pred.confidence}</span>
           </div>
         </div>
         <div className="bar-track">
           <div
             className="bar-fill"
             style={{
-              width: animate ? `${pred.confidence}%` : "0%",
+              width: animate ? `${confValue}%` : "0%",
               background: `linear-gradient(90deg, ${color}cc, ${color})`,
               transition: `width 0.8s cubic-bezier(0.4,0,0.2,1) ${index * 80}ms`,
             }}
@@ -408,7 +418,7 @@ export default function App() {
             <span className="hero-accent">in Seconds</span>
           </h1>
           <p className="hero-sub">
-            Upload an Image of any () and get the top 5 predicted classes with confidence scores,
+            Upload an Image of any (Sunflower, Rose, Tulip, Daisy, Daffodil) and get the top 5 predicted classes with confidence scores,
             powered by finetuned Model using Keras and TensorFlow.
           </p>
         </section>
