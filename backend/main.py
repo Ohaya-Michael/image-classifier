@@ -67,7 +67,7 @@ async def classify_v1(file: UploadFile = File(...)):
     
     # Convert dictionary to array format for frontend
     predictions = [
-        {"rank": rank + 1, "label": label, "confidence": confidence}
+        {"rank": rank + 1, "label": label, "confidence": confidence.replace("%", "")}
         for rank, (label, confidence) in enumerate(predictions_dict.items())
     ]
 
