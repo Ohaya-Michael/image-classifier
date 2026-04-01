@@ -23,6 +23,13 @@ Framework: **Keras / TensorFlow**
 ```
 image-classifier/
 ├── backend/
+│   ├──helper_funtions.py
+│   │   ├──models
+│   │   │    ├──trained_model_features.keras
+│   │   │    └──trained_model_finetuned.keras
+│   │   ├──pdf_builder.py
+│   │   ├──predict.py
+│   │   └──preprocessing.py
 │   ├── main.py              # FastAPI app — /classify & /report endpoints
 │   └── requirements.txt     # Python dependencies (TensorFlow, FastAPI …)
 └── frontend/
